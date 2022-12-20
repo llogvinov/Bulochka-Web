@@ -10,3 +10,15 @@ C:\Практика\Bulochka\Bulochka.Utility\obj\Debug\net6.0\Bulochka.Utility.
 C:\Практика\Bulochka\Bulochka.Utility\obj\Debug\net6.0\refint\Bulochka.Utility.dll
 C:\Практика\Bulochka\Bulochka.Utility\obj\Debug\net6.0\Bulochka.Utility.pdb
 C:\Практика\Bulochka\Bulochka.Utility\obj\Debug\net6.0\ref\Bulochka.Utility.dll
+C:\Практика\Bulochka-Web\Bulochka.Utility\bin\Debug\net6.0\Bulochka.Utility.deps.json
+C:\Практика\Bulochka-Web\Bulochka.Utility\bin\Debug\net6.0\Bulochka.Utility.dll
+C:\Практика\Bulochka-Web\Bulochka.Utility\bin\Debug\net6.0\Bulochka.Utility.pdb
+C:\Практика\Bulochka-Web\Bulochka.Utility\obj\Debug\net6.0\Bulochka.Utility.csproj.AssemblyReference.cache
+C:\Практика\Bulochka-Web\Bulochka.Utility\obj\Debug\net6.0\Bulochka.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Практика\Bulochka-Web\Bulochka.Utility\obj\Debug\net6.0\Bulochka.Utility.AssemblyInfoInputs.cache
+C:\Практика\Bulochka-Web\Bulochka.Utility\obj\Debug\net6.0\Bulochka.Utility.AssemblyInfo.cs
+C:\Практика\Bulochka-Web\Bulochka.Utility\obj\Debug\net6.0\Bulochka.Utility.csproj.CoreCompileInputs.cache
+C:\Практика\Bulochka-Web\Bulochka.Utility\obj\Debug\net6.0\Bulochka.Utility.dll
+C:\Практика\Bulochka-Web\Bulochka.Utility\obj\Debug\net6.0\refint\Bulochka.Utility.dll
+C:\Практика\Bulochka-Web\Bulochka.Utility\obj\Debug\net6.0\Bulochka.Utility.pdb
+C:\Практика\Bulochka-Web\Bulochka.Utility\obj\Debug\net6.0\ref\Bulochka.Utility.dll
