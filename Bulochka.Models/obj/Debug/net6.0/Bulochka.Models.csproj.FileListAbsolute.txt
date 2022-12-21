@@ -10,3 +10,15 @@ C:\Практика\Bulochka\Bulochka.Models\obj\Debug\net6.0\Bulochka.Models.dl
 C:\Практика\Bulochka\Bulochka.Models\obj\Debug\net6.0\refint\Bulochka.Models.dll
 C:\Практика\Bulochka\Bulochka.Models\obj\Debug\net6.0\Bulochka.Models.pdb
 C:\Практика\Bulochka\Bulochka.Models\obj\Debug\net6.0\ref\Bulochka.Models.dll
+C:\Практика\Bulochka-Web\Bulochka.Models\bin\Debug\net6.0\Bulochka.Models.deps.json
+C:\Практика\Bulochka-Web\Bulochka.Models\bin\Debug\net6.0\Bulochka.Models.dll
+C:\Практика\Bulochka-Web\Bulochka.Models\bin\Debug\net6.0\Bulochka.Models.pdb
+C:\Практика\Bulochka-Web\Bulochka.Models\obj\Debug\net6.0\Bulochka.Models.csproj.AssemblyReference.cache
+C:\Практика\Bulochka-Web\Bulochka.Models\obj\Debug\net6.0\Bulochka.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Практика\Bulochka-Web\Bulochka.Models\obj\Debug\net6.0\Bulochka.Models.AssemblyInfoInputs.cache
+C:\Практика\Bulochka-Web\Bulochka.Models\obj\Debug\net6.0\Bulochka.Models.AssemblyInfo.cs
+C:\Практика\Bulochka-Web\Bulochka.Models\obj\Debug\net6.0\Bulochka.Models.csproj.CoreCompileInputs.cache
+C:\Практика\Bulochka-Web\Bulochka.Models\obj\Debug\net6.0\Bulochka.Models.dll
+C:\Практика\Bulochka-Web\Bulochka.Models\obj\Debug\net6.0\refint\Bulochka.Models.dll
+C:\Практика\Bulochka-Web\Bulochka.Models\obj\Debug\net6.0\Bulochka.Models.pdb
+C:\Практика\Bulochka-Web\Bulochka.Models\obj\Debug\net6.0\ref\Bulochka.Models.dll

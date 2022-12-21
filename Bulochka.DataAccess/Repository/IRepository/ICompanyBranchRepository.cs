@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bulochka.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Bulochka.DataAccess.Repository.IRepository
 {
-    public interface IUnitOfWork
+    public interface ICompanyBranchRepository : IRepository<CompanyBranch>
     {
-        IProductRepository Product { get; }
-        ICompanyBranchRepository CompanyBranch { get; }
-        void Save();
+        void Update(CompanyBranch branch);
     }
 }

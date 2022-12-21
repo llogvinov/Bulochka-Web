@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cCgFJIaeLNJtXNlDF8EVdscshN9wt5ZilC9vJaFPeDA=",
+  "Hash": "BuINpoYJpQTF52cZFRAzYj2x1Tyhz/mrq4XU5JT3BdE=",
   "Source": "BulochkaWeb",
   "BasePath": "_content/BulochkaWeb",
   "Mode": "Default",
@@ -1239,6 +1239,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\fbd1f75e-2dd5-42ef-ab75-76116341531e.jpg"
+    },
+    {
+      "Identity": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\js\\companyBranch.js",
+      "SourceId": "BulochkaWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\",
+      "BasePath": "_content/BulochkaWeb",
+      "RelativePath": "js/companyBranch.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\companyBranch.js"
     },
     {
       "Identity": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\js\\product.js",
