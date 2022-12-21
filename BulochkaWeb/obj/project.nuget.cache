@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/cUoQ4NSkg4H7A0KGDVA06+RqWt7K3Vn+cgc+n3a7INdfFYqexxHmNk0RhSeOvaiI9MpFXqvvgwBIwTOIAejcg==",
+  "dgSpecHash": "gIS4zWlGklCUtB/+b7vi3qgnJ92WqgI1Ih7J/d9HraYuTSZwePmhW/j8wph9cfxJ0Gbdu+yoLH3FnBGP/oI5eg==",
   "success": true,
   "projectFilePath": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj",
   "expectedPackageFiles": [
@@ -34,8 +34,10 @@
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.mvc.core\\2.2.0\\microsoft.aspnetcore.mvc.core.2.2.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.mvc.dataannotations\\2.2.0\\microsoft.aspnetcore.mvc.dataannotations.2.2.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.mvc.formatters.json\\2.2.0\\microsoft.aspnetcore.mvc.formatters.json.2.2.0.nupkg.sha512",
+    "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.12\\microsoft.aspnetcore.mvc.razor.extensions.6.0.12.nupkg.sha512",
+    "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\6.0.12\\microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.12.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.mvc.viewfeatures\\2.2.0\\microsoft.aspnetcore.mvc.viewfeatures.2.2.0.nupkg.sha512",
-    "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
+    "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.12\\microsoft.aspnetcore.razor.language.6.0.12.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.responsecaching.abstractions\\2.2.0\\microsoft.aspnetcore.responsecaching.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.routing\\2.2.0\\microsoft.aspnetcore.routing.2.2.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.aspnetcore.routing.abstractions\\2.2.0\\microsoft.aspnetcore.routing.abstractions.2.2.0.nupkg.sha512",
@@ -51,7 +53,7 @@
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.codeanalysis.csharp.scripting\\4.0.0\\microsoft.codeanalysis.csharp.scripting.4.0.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\4.0.0\\microsoft.codeanalysis.csharp.workspaces.4.0.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.codeanalysis.features\\4.0.0\\microsoft.codeanalysis.features.4.0.0.nupkg.sha512",
-    "C:\\Users\\Лев\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.0\\microsoft.codeanalysis.razor.6.0.0.nupkg.sha512",
+    "C:\\Users\\Лев\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.12\\microsoft.codeanalysis.razor.6.0.12.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.codeanalysis.scripting.common\\4.0.0\\microsoft.codeanalysis.scripting.common.4.0.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.codeanalysis.visualbasic\\4.0.0\\microsoft.codeanalysis.visualbasic.4.0.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\microsoft.codeanalysis.visualbasic.features\\4.0.0\\microsoft.codeanalysis.visualbasic.features.4.0.0.nupkg.sha512",
