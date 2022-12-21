@@ -13,5 +13,6 @@ namespace Bulochka.DataAccess
 
         public DbSet<Product> Products { get; set; }
         public DbSet<CompanyBranch> CompanyBranches { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
