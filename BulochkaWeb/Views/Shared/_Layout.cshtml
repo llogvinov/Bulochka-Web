@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Bulochka.Utility
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,15 +25,18 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Главная</a>
                         </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Управление Контентом</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Каталог Товаров</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="CompanyBranch" asp-action="Index">Список Филиалов</a>
-                                @*<div class="dropdown-divider"></div>*@
-                            </div>
-                        </li>
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Управление Контентом</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Каталог Товаров</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="CompanyBranch" asp-action="Index">Список Филиалов</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Создать пользователя</a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                     @*<form class="d-flex">

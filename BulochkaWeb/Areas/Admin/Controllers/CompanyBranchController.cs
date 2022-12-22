@@ -1,11 +1,14 @@
 ﻿using Bulochka.DataAccess;
 using Bulochka.DataAccess.Repository.IRepository;
 using Bulochka.Models;
+using Bulochka.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulochkaWeb.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CompanyBranchController : Controller
     {
         private string _tempDataMessage;
