@@ -1,7 +1,7 @@
 ﻿@model ShoppingCart
 
 <form method="post">
-    <input hidden asp-for="Product.Id" />
+    <input hidden asp-for="ProductId" />
     <div class="card  container pt-4">
             <div class="card-header bg-primary text-light ml-0  row ">
                 <div class="col-12 col-md-6">
@@ -37,9 +37,9 @@
                     <div class="col-12 col-md-6 pb-1">
                         <a class="btn btn-success form-control " style="height:50px;" asp-action="Index">Назад</a>
                     </div>
-                    @*<div class="col-12 col-md-6 pb-1">
+                    <div class="col-12 col-md-6 pb-1">
                         <button type="submit" value="Add to Cart" class="btn btn-primary form-control" style="height:50px;">Добавить в корзину</button>
-                    </div>*@
+                    </div>
                 </div>
             </div>
         </div>
