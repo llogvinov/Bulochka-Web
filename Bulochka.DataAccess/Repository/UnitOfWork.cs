@@ -16,10 +16,14 @@ namespace Bulochka.DataAccess.Repository
             _db = db;
             Product = new ProductRepository(_db);
             CompanyBranch = new CompanyBranchRepository(_db);
+            ShoppingCart = new ShoppingCartRepository(_db);
+            ApplicationUser = new ApplicationUserRepository(_db);
         }
 
         public IProductRepository Product { get; private set; }
         public ICompanyBranchRepository CompanyBranch { get; private set; }
+        public IShoppingCartRepository ShoppingCart { get; private set; }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
 
         public void Save()
         {
