@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Bulochka.Models
 {
-    public class OrderDetails
+    public class OrderDetail
     {
         public int Id { get; set; }
 

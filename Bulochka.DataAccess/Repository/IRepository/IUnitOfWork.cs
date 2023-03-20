@@ -12,6 +12,8 @@ namespace Bulochka.DataAccess.Repository.IRepository
         ICompanyBranchRepository CompanyBranch { get; }
         IShoppingCartRepository ShoppingCart { get; }
         IApplicationUserRepository ApplicationUser { get; }
+        IOrderHeaderRepository OrderHeader { get; }
+        IOrderDetailRepository OrderDetail { get; }
         void Save();
     }
 }
