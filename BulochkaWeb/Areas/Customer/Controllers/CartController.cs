@@ -27,11 +27,12 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             ShoppingCartVM = new ShoppingCartVM()
             {
                 ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
-                includeProperties: "Product")
+                includeProperties: "Product"),
+                OrderHeader = new()
             };
             foreach (var cart in ShoppingCartVM.ListCart)
             {
-                ShoppingCartVM.CartTotal += (cart.Product.Price * cart.Count);
+                ShoppingCartVM.OrderHeader.OrderTotal += (cart.Product.Price * cart.Count);
             }
 
             return View(ShoppingCartVM);
@@ -39,20 +40,23 @@ namespace BulochkaWeb.Areas.Customer.Controllers
 
         public IActionResult Summary()
         {
-            /*var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
             ShoppingCartVM = new ShoppingCartVM()
             {
                 ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
-                includeProperties: "Product")
+                includeProperties: "Product"),
+                OrderHeader = new()
             };
+            ShoppingCartVM.OrderHeader.ApplicationUser = 
+                _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
+
             foreach (var cart in ShoppingCartVM.ListCart)
             {
-                ShoppingCartVM.CartTotal += (cart.Product.Price * cart.Count);
+                ShoppingCartVM.OrderHeader.OrderTotal += (cart.Product.Price * cart.Count);
             }
 
-            return View(ShoppingCartVM);*/
             return View();
         }
 
