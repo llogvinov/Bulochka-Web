@@ -57,7 +57,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
                 ShoppingCartVM.OrderHeader.OrderTotal += (cart.Product.Price * cart.Count);
             }
 
-            return View();
+            return View(ShoppingCartVM);
         }
 
         public IActionResult Plus(int cartId)
