@@ -37,6 +37,25 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             return View(ShoppingCartVM);
         }
 
+        public IActionResult Summary()
+        {
+            /*var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            ShoppingCartVM = new ShoppingCartVM()
+            {
+                ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
+                includeProperties: "Product")
+            };
+            foreach (var cart in ShoppingCartVM.ListCart)
+            {
+                ShoppingCartVM.CartTotal += (cart.Product.Price * cart.Count);
+            }
+
+            return View(ShoppingCartVM);*/
+            return View();
+        }
+
         public IActionResult Plus(int cartId)
         {
             var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
