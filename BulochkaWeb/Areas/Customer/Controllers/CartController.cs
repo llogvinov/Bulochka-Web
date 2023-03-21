@@ -13,6 +13,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
     public class CartController : Controller
     {
         private IUnitOfWork _unitOfWork;
+        [BindProperty]
         private ShoppingCartVM ShoppingCartVM { get; set; }
         private int OrderTotal { get; set; }
 
@@ -29,7 +30,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             ShoppingCartVM = new ShoppingCartVM()
             {
                 ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
-                includeProperties: "Product"),
+                    includeProperties: "Product"),
                 OrderHeader = new()
             };
             foreach (var cart in ShoppingCartVM.ListCart)
@@ -48,11 +49,15 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             ShoppingCartVM = new ShoppingCartVM()
             {
                 ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
-                includeProperties: "Product"),
+                    includeProperties: "Product"),
                 OrderHeader = new()
             };
-            ShoppingCartVM.OrderHeader.ApplicationUser = 
+            ShoppingCartVM.OrderHeader.ApplicationUser =
                 _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
+
+            ShoppingCartVM.OrderHeader.StreetAddress = ShoppingCartVM.OrderHeader.ApplicationUser.StreetAddress;
+            ShoppingCartVM.OrderHeader.City = ShoppingCartVM.OrderHeader.ApplicationUser.City;
+            ShoppingCartVM.OrderHeader.PostalCode = ShoppingCartVM.OrderHeader.ApplicationUser.PostalCode;
 
             foreach (var cart in ShoppingCartVM.ListCart)
             {
@@ -65,13 +70,16 @@ namespace BulochkaWeb.Areas.Customer.Controllers
         [HttpPost]
         [ActionName("Summary")]
         [ValidateAntiForgeryToken]
-        public IActionResult SummaryPOST()
+        public IActionResult SummaryPOST(ShoppingCartVM ShoppingCartVM)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
             ShoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Product");
+            ShoppingCartVM.OrderHeader.StreetAddress = ShoppingCartVM.OrderHeader.ApplicationUser.StreetAddress;
+            ShoppingCartVM.OrderHeader.City = ShoppingCartVM.OrderHeader.ApplicationUser.City;
+            ShoppingCartVM.OrderHeader.PostalCode = ShoppingCartVM.OrderHeader.ApplicationUser.PostalCode;
             ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
             ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
             ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;

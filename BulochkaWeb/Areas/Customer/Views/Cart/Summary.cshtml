@@ -26,59 +26,50 @@
 								</h4>
 							</div>
 							<div class="row my-1">
-								<div class="col-3">
+								<div class="col-4">
 									<label>Полное имя</label>
 								</div>
-								<div class="col-9">
+								<div class="col-8">
 									<input asp-for="OrderHeader.ApplicationUser.Name" class="form-control" />
 									<span asp-validation-for="OrderHeader.ApplicationUser.Name" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
-								<div class="col-3">
+								<div class="col-4">
 									<label>Номер телефона</label>
 								</div>
-								<div class="col-9">
+								<div class="col-8">
 									<input asp-for="OrderHeader.ApplicationUser.PhoneNumber" class="form-control" />
 									<span asp-validation-for="OrderHeader.ApplicationUser.PhoneNumber" class="text-danger"></span>
 								</div>
 							</div>
-							@*<div class="row my-1">
-								<div class="col-3">
-									<label>Street Address</label>
+							<div class="row my-1">
+								<div class="col-4">
+									<label>Адрес доставки</label>
 								</div>
-								<div class="col-9">
+								<div class="col-8">
 									<input asp-for="OrderHeader.ApplicationUser.StreetAddress" class="form-control" />
 									<span asp-validation-for="OrderHeader.ApplicationUser.StreetAddress" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
-								<div class="col-3">
-									<label>City</label>
+								<div class="col-4">
+									<label>Город</label>
 								</div>
-								<div class="col-9">
+								<div class="col-8">
 									<input asp-for="OrderHeader.ApplicationUser.City" class="form-control" />
 									<span asp-validation-for="OrderHeader.ApplicationUser.City" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
-								<div class="col-3">
-									<label>State</label>
+								<div class="col-4">
+									<label>Почтовый индекс</label>
 								</div>
-								<div class="col-9">
-									<input asp-for="OrderHeader.ApplicationUser.State" class="form-control" />
-									<span asp-validation-for="OrderHeader.ApplicationUser.State" class="text-danger"></span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Postal Code</label>
-								</div>
-								<div class="col-9">
+								<div class="col-8">
 									<input asp-for="OrderHeader.ApplicationUser.PostalCode" class="form-control" />
 									<span asp-validation-for="OrderHeader.ApplicationUser.PostalCode" class="text-danger"></span>
 								</div>
-							</div>*@
+							</div>
 						</div>
 						<div class="col-12 col-lg-5 offset-lg-1">
 							<h4 class="d-flex justify-content-between align-items-center mb-3">

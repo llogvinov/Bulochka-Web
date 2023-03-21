@@ -31,5 +31,12 @@ namespace Bulochka.Models
 
         public int? PickUpPlaceId { get; set; }
         public DateTime? PickUpTime { get; set; }
+
+        [Required]
+        public string City { get; set; }
+        [Required]
+        public string StreetAddress { get; set; }
+        [Required]
+        public string PostalCode { get; set; }
     }
 }
