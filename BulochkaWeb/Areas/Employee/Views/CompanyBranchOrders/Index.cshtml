@@ -1,0 +1,25 @@
+﻿@model IEnumerable<OrderHeader>
+
+<table class="table table-bordered table-stripped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Дата заказа</th>
+            <th>Время заказа</th>
+            <th>Сумма заказа</th>
+            <th>Статус заказа</th>
+            <th>Статус оплаты</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td width=10%>@obj.OrderDate.ToShortDateString()</td>
+                <td width=10%>@obj.OrderDate.ToShortTimeString()</td>                
+                <td width=10%>@obj.OrderTotal</td>
+                <td width=15%>@obj.OrderStatus</td>
+                <td width=15%>@obj.PaymentStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>
