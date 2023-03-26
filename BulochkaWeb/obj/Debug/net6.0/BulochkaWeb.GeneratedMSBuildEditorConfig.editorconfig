@@ -55,8 +55,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Практика/Bulochka-Web/BulochkaWeb/Areas/Customer/Views/Cart/Summary.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQ2FydFxTdW1tYXJ5LmNzaHRtbA==
+[C:/Практика/Bulochka-Web/BulochkaWeb/Areas/Customer/Views/Cart/SummaryDelivery.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQ2FydFxTdW1tYXJ5RGVsaXZlcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Практика/Bulochka-Web/BulochkaWeb/Areas/Customer/Views/Cart/SummaryInCafe.cshtml]
