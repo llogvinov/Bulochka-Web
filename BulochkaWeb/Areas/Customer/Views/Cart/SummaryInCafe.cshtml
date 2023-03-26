@@ -9,7 +9,7 @@
 				<div class=" row container">
 					<div class="col-6">
 						<i class="fa fa-shopping-cart"></i> &nbsp;
-						Оформление заказа - доставка
+						Оформление заказа - получить в кафе
 					</div>
 					<div class="col-6 text-end">
 						<a asp-action="Index" class="btn btn-outline-info btn-sm">Назад к корзине</a>
@@ -22,7 +22,7 @@
 						<div class="col-12 col-lg-6 pb-4">
 							<div class="row">
 								<h4 class="d-flex justify-content-between align-items-center mb-3">
-									<span class="text-info">Информация о доставке:</span>
+									<span class="text-info">Информация о получении заказа:</span>
 								</h4>
 							</div>
 							<div class="row my-1">
@@ -48,26 +48,8 @@
 									<label>Адрес доставки</label>
 								</div>
 								<div class="col-8">
-									<input asp-for="OrderHeader.ApplicationUser.StreetAddress" class="form-control" />
-									<span asp-validation-for="OrderHeader.ApplicationUser.StreetAddress" class="text-danger"></span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-4">
-									<label>Город</label>
-								</div>
-								<div class="col-8">
-									<input asp-for="OrderHeader.ApplicationUser.City" class="form-control" />
-									<span asp-validation-for="OrderHeader.ApplicationUser.City" class="text-danger"></span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-4">
-									<label>Почтовый индекс</label>
-								</div>
-								<div class="col-8">
-									<input asp-for="OrderHeader.ApplicationUser.PostalCode" class="form-control" />
-									<span asp-validation-for="OrderHeader.ApplicationUser.PostalCode" class="text-danger"></span>
+									<select asp-for="OrderHeader.PickUpPlaceId" asp-items="@Model.CompanyBranchList" class="form-select">
+									</select>
 								</div>
 							</div>
 						</div>
@@ -97,7 +79,7 @@
 			<div class="card-footer">
 				<div class="row">
 					<div class="col-12 col-md-8 pt-2">
-						<p style="color:maroon; font-size:14px;">Примерное  время доставки 30 минут</p>
+						<p style="color:maroon; font-size:14px;">Примерное  время готовности 10 минут</p>
 					</div>
 					<div class="col-12 col-md-4">
 						<button type="submit" value="Place Order" class="btn btn-primary form-control">Оформить заказ</button>

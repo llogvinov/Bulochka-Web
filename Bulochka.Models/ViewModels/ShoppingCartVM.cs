@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +12,7 @@ namespace Bulochka.Models.ViewModels
     {
         public IEnumerable<ShoppingCart> ListCart { get; set; }
         public OrderHeader OrderHeader { get; set; }
+        [ValidateNever]
+        public IEnumerable<SelectListItem> CompanyBranchList { get; set; }
     }
 }
