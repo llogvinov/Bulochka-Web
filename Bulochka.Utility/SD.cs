@@ -12,15 +12,15 @@ namespace Bulochka.Utility
         public const string Role_Employee = "Работник";
         public const string Role_Admin = "Администратор";
 
-        public const string StatusPending = "Pending";
-        public const string StatusApproved = "Approved";
-        public const string StatusInProgress = "Processing";
-        public const string StatusFinished = "Finished";
-        public const string StatusCanceled = "Canceled";
-        public const string StatusRefunded = "Refunded";
+        public const string StatusPending = "Ожидает подтверждения";
+        public const string StatusApproved = "Подтвержден";
+        public const string StatusInProgress = "В процессе";
+        public const string StatusFinished = "Закончен";
+        public const string StatusCanceled = "Отменен";
+        public const string StatusRefunded = "Возрат";
 
-        public const string PaymentStatusPending = "Pending";
-        public const string PaymentStatusApproved = "Approved";
-        public const string PaymentStatusRejected = "Rejected";
+        public const string PaymentStatusPending = "Ожидает оплаты";
+        public const string PaymentStatusApproved = "Оплачен";
+        public const string PaymentStatusRejected = "Оплата отменена";
     }
 }

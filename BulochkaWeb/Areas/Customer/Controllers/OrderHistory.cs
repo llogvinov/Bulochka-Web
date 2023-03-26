@@ -1,4 +1,5 @@
 ﻿using Bulochka.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Security.Claims;
 namespace BulochkaWeb.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize]
     public class OrderHistory : Controller
     {
         private readonly IUnitOfWork _unitofwork;
@@ -20,7 +22,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            var ordersList = _unitofwork.OrderHeader.GetAll();
+            var ordersList = _unitofwork.OrderHeader.GetAll(o => o.ApplicationUserId == claim.Value);
 
             return View(ordersList);
         }
