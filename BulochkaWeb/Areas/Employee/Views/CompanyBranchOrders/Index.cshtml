@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OrderHeader>
+﻿@model Dictionary<OrderHeader, string>
 
 <table class="table table-bordered table-stripped" style="width:100%">
     <thead>
@@ -11,14 +11,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var obj in Model)
+        @foreach (var order in Model)
         {
             <tr>
-                <td width=10%>@obj.OrderDate.ToShortDateString()</td>
-                <td width=10%>@obj.OrderDate.ToShortTimeString()</td>                
-                <td width=10%>@obj.OrderTotal</td>
-                <td width=15%>@obj.OrderStatus</td>
-                <td width=15%>@obj.PaymentStatus</td>
+                <td width=10%>@order.Key.OrderDate.ToShortDateString()</td>
+                <td width=10%>@order.Key.OrderDate.ToShortTimeString()</td>                
+                <td width=10%>@order.Value</td>
+                <td width=15%>@order.Key.OrderStatus</td>
+                <td width=15%>@order.Key.PaymentStatus</td>
             </tr>
         }
     </tbody>

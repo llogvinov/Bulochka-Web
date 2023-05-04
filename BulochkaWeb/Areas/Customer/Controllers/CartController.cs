@@ -15,7 +15,6 @@ namespace BulochkaWeb.Areas.Customer.Controllers
     {
         private IUnitOfWork _unitOfWork;
         private ShoppingCartVM ShoppingCartVM { get; set; }
-        private int OrderTotal { get; set; }
 
         public CartController(IUnitOfWork unitOfWork)
         {
