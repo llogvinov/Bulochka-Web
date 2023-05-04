@@ -1,6 +1,7 @@
 ﻿using Bulochka.DataAccess.Repository.IRepository;
 using Bulochka.Models;
 using Bulochka.Models.ViewModels;
+using Bulochka.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -44,5 +45,51 @@ namespace BulochkaWeb.Areas.Employee
 
             return View(Orders);
         }
+
+        private OrderHeader GetOrderHeader(int orderId) 
+            => _unitofwork.OrderHeader.GetFirstOrDefault(o => o.Id == orderId);
+
+        public IActionResult PaymentComplete(int orderId)
+        {
+            GetOrderHeader(orderId).PaymentStatus = SD.PaymentStatusApproved;
+            _unitofwork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult PaymentRejected(int orderId)
+        {
+            GetOrderHeader(orderId).PaymentStatus = SD.PaymentStatusRejected;
+            _unitofwork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult OrderInProgress(int orderId)
+        {
+            GetOrderHeader(orderId).OrderStatus = SD.StatusInProgress;
+            _unitofwork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult OrderApproved(int orderId)
+        {
+            GetOrderHeader(orderId).OrderStatus = SD.StatusApproved;
+            _unitofwork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult OrderFinished(int orderId)
+        {
+            GetOrderHeader(orderId).OrderStatus = SD.StatusFinished;
+            _unitofwork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult OrderCanceled(int orderId)
+        {
+            GetOrderHeader(orderId).OrderStatus = SD.StatusCanceled;
+            _unitofwork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
