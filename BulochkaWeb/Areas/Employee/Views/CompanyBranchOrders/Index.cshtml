@@ -1,4 +1,5 @@
 ﻿@model Dictionary<OrderHeader, string>
+@using Bulochka.Utility
 
 <table class="table table-bordered table-stripped" style="width:100%">
     <thead>
@@ -17,8 +18,53 @@
                 <td width=10%>@order.Key.OrderDate.ToShortDateString()</td>
                 <td width=10%>@order.Key.OrderDate.ToShortTimeString()</td>                
                 <td width=10%>@order.Value</td>
-                <td width=15%>@order.Key.OrderStatus</td>
-                <td width=15%>@order.Key.PaymentStatus</td>
+                <td>
+                    @if (order.Key.OrderStatus == SD.StatusPending)
+                    {
+                        <a asp-action="OrderApproved" asp-route-orderId="@order.Key.Id" class="btn btn-dark">
+                            Заказ подтвержден
+                        </a>
+                    }
+                    else if (order.Key.OrderStatus == SD.StatusApproved)
+                    {
+                        <a asp-action="OrderInProgress" asp-route-orderId="@order.Key.Id" class="btn btn-dark">
+                            Заказ в процессе
+					    </a>
+                    }
+                    else if (order.Key.OrderStatus == SD.StatusInProgress)
+                    {
+                        <a asp-action="OrderFinished" asp-route-orderId="@order.Key.Id" class="btn  btn-dark">
+                            Заказ завершен
+					    </a>
+                    }
+                    
+                    @if (order.Key.OrderStatus != SD.StatusFinished || order.Key.OrderStatus == SD.StatusCanceled)
+                    {
+                        <a asp-action="OrderCanceled" asp-route-orderId="@order.Key.Id" class="btn btn-danger">
+                            Заказ отменен
+					    </a>
+                    }
+                    
+                    @if (order.Key.OrderStatus == SD.StatusFinished || order.Key.OrderStatus == SD.StatusCanceled)
+                    {
+                        @order.Key.OrderStatus
+                    }
+                </td>
+                <td>
+                    @if (order.Key.PaymentStatus == SD.PaymentStatusPending)
+                    {
+                        <a asp-action="PaymentComplete" asp-route-orderId="@order.Key.Id" class="btn btn-dark">
+                            Оплата успешна
+					    </a>
+                        <a asp-action="PaymentRejected" asp-route-orderId="@order.Key.Id" class="btn btn-danger">
+                            Оплата отклонена
+                        </a>
+                    } 
+                    else
+                    {
+                        @order.Key.PaymentStatus
+                    }
+                </td>
             </tr>
         }
     </tbody>
