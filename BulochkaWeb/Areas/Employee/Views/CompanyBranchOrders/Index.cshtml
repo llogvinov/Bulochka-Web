@@ -1,4 +1,4 @@
-﻿@model Dictionary<OrderHeader, string>
+﻿@model Dictionary<OrderHeader, IEnumerable<OrderDetail>>
 @using Bulochka.Utility
 
 <table class="table table-bordered table-stripped" style="width:100%">
@@ -20,7 +20,10 @@
                 <td width=15%>
                     @order.Key.OrderTotal.ToString("c")
                     <br />
-                    @order.Value
+                    @foreach (var p in order.Value)
+                    {
+                        <p>@p.Product.Title - @p.Count шт.</p>
+                    }
                 </td>
                 <td>
                     @if (order.Key.OrderStatus == SD.StatusPending)

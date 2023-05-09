@@ -14,6 +14,7 @@ namespace BulochkaWeb.Areas.Employee
     {
         private readonly IUnitOfWork _unitofwork;
         public Dictionary<OrderHeader, string> Orders { get; set; }
+        public Dictionary<OrderHeader, IEnumerable<OrderDetail>> OrdersNew { get; set; }
 
         public CompanyBranchOrders(IUnitOfWork unitOfWork)
         {
@@ -43,7 +44,14 @@ namespace BulochkaWeb.Areas.Employee
                 Orders.Add(order, details);
             }
 
-            return View(Orders);
+            OrdersNew = new Dictionary<OrderHeader, IEnumerable<OrderDetail>>();
+            foreach (var order in orderList)
+            {
+                var orderDetails = _unitofwork.OrderDetail.GetAll(d => d.OrderId == order.Id);
+                OrdersNew.Add(order, orderDetails);
+            }
+
+            return View(OrdersNew);
         }
 
         private OrderHeader GetOrderHeader(int orderId) 
