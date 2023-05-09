@@ -17,7 +17,11 @@
             <tr>
                 <td width=10%>@order.Key.OrderDate.ToShortDateString()</td>
                 <td width=10%>@order.Key.OrderDate.ToShortTimeString()</td>                
-                <td width=10%>@order.Value</td>
+                <td width=15%>
+                    @order.Key.OrderTotal.ToString("c")
+                    <br />
+                    @order.Value
+                </td>
                 <td>
                     @if (order.Key.OrderStatus == SD.StatusPending)
                     {
@@ -38,8 +42,9 @@
 					    </a>
                     }
                     
-                    @if (order.Key.OrderStatus != SD.StatusFinished || order.Key.OrderStatus == SD.StatusCanceled)
+                    @if (order.Key.OrderStatus != SD.StatusFinished && order.Key.OrderStatus != SD.StatusCanceled)
                     {
+                        <br />
                         <a asp-action="OrderCanceled" asp-route-orderId="@order.Key.Id" class="btn btn-danger">
                             Заказ отменен
 					    </a>
@@ -47,6 +52,7 @@
                     
                     @if (order.Key.OrderStatus == SD.StatusFinished || order.Key.OrderStatus == SD.StatusCanceled)
                     {
+                        <br />
                         @order.Key.OrderStatus
                     }
                 </td>
@@ -56,6 +62,7 @@
                         <a asp-action="PaymentComplete" asp-route-orderId="@order.Key.Id" class="btn btn-dark">
                             Оплата успешна
 					    </a>
+                        <br />
                         <a asp-action="PaymentRejected" asp-route-orderId="@order.Key.Id" class="btn btn-danger">
                             Оплата отклонена
                         </a>

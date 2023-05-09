@@ -38,7 +38,7 @@ namespace BulochkaWeb.Areas.Employee
                 foreach (var detail in orderDetails)
                 {
                     var product = _unitofwork.Product.GetFirstOrDefault(p => p.Id == detail.ProductId);
-                    details += product.Title + " \tX" + detail.Count + "\n";
+                    details += $"{detail.Count}X\t {product.Title}\n";
                 }
                 Orders.Add(order, details);
             }
