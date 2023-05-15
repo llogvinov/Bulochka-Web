@@ -16,13 +16,24 @@
         {
             <tr>
                 <td width=10%>@order.Key.OrderDate.ToShortDateString()</td>
-                <td width=10%>@order.Key.OrderDate.ToShortTimeString()</td>                
+                <td width=10%>@order.Key.OrderDate.ToShortTimeString()</td>       
+                <td width=10%>
+                    @if (order.Key.PickUpPlaceId != null)
+                    {
+                        <p>В кафе</p>
+                    }
+                    else
+                    {
+                        <p>Доставка</p>
+                        <p>@order.Key.City, @order.Key.PostalCode, @order.Key.StreetAddress</p>
+                    }
+                </td>
                 <td width=15%>
                     @order.Key.OrderTotal.ToString("c")
                     <br />
-                    @foreach (var p in order.Value)
+                    @foreach (var d in order.Value)
                     {
-                        <p>@p.Product.Title - @p.Count шт.</p>
+                        <p>@d.Product.Title - @d.Count шт.</p>
                     }
                 </td>
                 <td>

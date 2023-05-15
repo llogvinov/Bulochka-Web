@@ -28,11 +28,17 @@ namespace BulochkaWeb.Areas.Employee
 
             var employee = _unitofwork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
             var companyBranchId = employee.CompanyBranchId;
+            var companyBranch = _unitofwork.CompanyBranch.GetFirstOrDefault(c => c.Id == companyBranchId);
+            
+            var orderList = GetInCafeOrders(companyBranchId);
+            var deliveryOrders = GetDeliveryOrders(companyBranch);
+            
+            var allOrders = new List<OrderHeader> ();
+            foreach (var order in orderList) allOrders.Add(order);
+            foreach (var order in deliveryOrders) allOrders.Add(order);
 
-            var orderList = _unitofwork.OrderHeader.GetAll(o => o.PickUpPlaceId == companyBranchId);
-
-            Orders = new Dictionary<OrderHeader, string>();
-            foreach (var order in orderList)
+            /*Orders = new Dictionary<OrderHeader, string>();
+            foreach (var order in allOrders)
             {
                 var orderDetails = _unitofwork.OrderDetail.GetAll(d => d.OrderId == order.Id);
                 string details = "";
@@ -41,18 +47,29 @@ namespace BulochkaWeb.Areas.Employee
                     var product = _unitofwork.Product.GetFirstOrDefault(p => p.Id == detail.ProductId);
                     details += $"{detail.Count}X\t {product.Title}\n";
                 }
-                Orders.Add(order, details);
-            }
+                Orders.TryAdd(order, details);
+            }*/
 
             OrdersNew = new Dictionary<OrderHeader, IEnumerable<OrderDetail>>();
-            foreach (var order in orderList)
+            foreach (var order in allOrders)
             {
                 var orderDetails = _unitofwork.OrderDetail.GetAll(d => d.OrderId == order.Id);
-                OrdersNew.Add(order, orderDetails);
+                foreach (var detail in orderDetails)
+                {
+                    var product = _unitofwork.Product.GetFirstOrDefault(p => p.Id == detail.ProductId);
+                    detail.Product = product;
+                }
+                OrdersNew.TryAdd(order, orderDetails);
             }
 
             return View(OrdersNew);
         }
+
+        private IEnumerable<OrderHeader> GetInCafeOrders(int? companyBranchId) 
+            => _unitofwork.OrderHeader.GetAll(o => o.PickUpPlaceId == companyBranchId);
+
+        private IEnumerable<OrderHeader> GetDeliveryOrders(CompanyBranch companyBranch) 
+            => _unitofwork.OrderHeader.GetAll(o => o.PickUpPlaceId == null && o.City == companyBranch.City);
 
         private OrderHeader GetOrderHeader(int orderId) 
             => _unitofwork.OrderHeader.GetFirstOrDefault(o => o.Id == orderId);
