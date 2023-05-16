@@ -69,37 +69,46 @@ namespace BulochkaWeb.Areas.Customer.Controllers
         [HttpPost]
         [ActionName("SummaryDelivery")]
         [ValidateAntiForgeryToken]
-        public IActionResult SummaryDeliveryPOST(ShoppingCartVM ShoppingCartVM)
+        public IActionResult SummaryDeliveryPOST(ShoppingCartVM shoppingCartVM)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            ShoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
-                includeProperties: "Product");
-            SetOrderHeaderAddress(ShoppingCartVM, 
-                ShoppingCartVM.OrderHeader.ApplicationUser.City,
-                ShoppingCartVM.OrderHeader.ApplicationUser.StreetAddress,
-                ShoppingCartVM.OrderHeader.ApplicationUser.PostalCode);
-            
-            ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
-            ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
-            ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
-            ShoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
-
-            foreach (var cart in ShoppingCartVM.ListCart)
+            if (claim == null)
             {
-                ShoppingCartVM.OrderHeader.OrderTotal += (cart.Product.Price * cart.Count);
+                throw new ArgumentNullException(nameof(claim));
             }
 
-            _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
+            shoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
+                includeProperties: "Product");
+
+            shoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
+            shoppingCartVM.OrderHeader.ApplicationUser =
+                _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
+
+            SetOrderHeaderAddress(shoppingCartVM,
+                shoppingCartVM.OrderHeader.ApplicationUser.City,
+                shoppingCartVM.OrderHeader.ApplicationUser.StreetAddress,
+                shoppingCartVM.OrderHeader.ApplicationUser.PostalCode);
+
+            shoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
+            shoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
+            shoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
+
+            foreach (var cart in shoppingCartVM.ListCart)
+            {
+                shoppingCartVM.OrderHeader.OrderTotal += (cart.Product.Price * cart.Count);
+            }
+
+            _unitOfWork.OrderHeader.Add(shoppingCartVM.OrderHeader);
             _unitOfWork.Save();
 
-            foreach (var cart in ShoppingCartVM.ListCart)
+            foreach (var cart in shoppingCartVM.ListCart)
             {
                 OrderDetail orderDetail = new()
                 {
                     ProductId = cart.ProductId,
-                    OrderId = ShoppingCartVM.OrderHeader.Id,
+                    OrderId = shoppingCartVM.OrderHeader.Id,
                     Price = cart.Product.Price,
                     Count = cart.Count,
                 };
@@ -108,7 +117,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
                 _unitOfWork.Save();
             }
 
-            _unitOfWork.ShoppingCart.RemoveRange(ShoppingCartVM.ListCart);
+            _unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
             _unitOfWork.Save();
 
             return RedirectToAction("Index", "Home");
