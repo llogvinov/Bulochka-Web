@@ -36,22 +36,10 @@ namespace BulochkaWeb.Areas.Employee
             var allOrders = new List<OrderHeader> ();
             foreach (var order in orderList) allOrders.Add(order);
             foreach (var order in deliveryOrders) allOrders.Add(order);
-
-            /*Orders = new Dictionary<OrderHeader, string>();
-            foreach (var order in allOrders)
-            {
-                var orderDetails = _unitofwork.OrderDetail.GetAll(d => d.OrderId == order.Id);
-                string details = "";
-                foreach (var detail in orderDetails)
-                {
-                    var product = _unitofwork.Product.GetFirstOrDefault(p => p.Id == detail.ProductId);
-                    details += $"{detail.Count}X\t {product.Title}\n";
-                }
-                Orders.TryAdd(order, details);
-            }*/
+            var sortedOrders = allOrders.OrderByDescending(o => o.OrderDate);
 
             OrdersNew = new Dictionary<OrderHeader, IEnumerable<OrderDetail>>();
-            foreach (var order in allOrders)
+            foreach (var order in sortedOrders)
             {
                 var orderDetails = _unitofwork.OrderDetail.GetAll(d => d.OrderId == order.Id);
                 foreach (var detail in orderDetails)
