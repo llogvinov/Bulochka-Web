@@ -200,10 +200,9 @@ namespace BulochkaWeb.Areas.Customer.Controllers
                 _unitOfWork.Save();
             }
 
-
             #region Stripe
 
-            var domain = "";
+            var domain = "https://localhost:44324/";
             var options = new SessionCreateOptions
             {
                 PaymentMethodTypes = new List<string>
@@ -247,10 +246,9 @@ namespace BulochkaWeb.Areas.Customer.Controllers
 
             #endregion
 
-            // will be removed? 
-            _unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
-            _unitOfWork.Save();
-            return RedirectToAction("Index", "Home");
+            //_unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
+            //_unitOfWork.Save();
+            //return RedirectToAction("Index", "Home");
         }
 
         private static void SetOrderHeaderAddress(ShoppingCartVM ShoppingCartVM, string city, string address, string postalCode)
@@ -268,7 +266,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             Session session = service.Get(orderHeader.SessionId);
             if (session.PaymentStatus.ToLower() == "paid")
             {
-                _unitOfWork.OrderHeader.UpdateStripePaymentId(id, SD.StatusApproved, SD.PaymentStatusApproved);
+                _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                 _unitOfWork.Save();
             }
 
