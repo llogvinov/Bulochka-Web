@@ -22,5 +22,7 @@ namespace Bulochka.Utility
         public const string PaymentStatusPending = "Ожидает оплаты";
         public const string PaymentStatusApproved = "Оплачен";
         public const string PaymentStatusRejected = "Оплата отменена";
+
+        public const string Paid = "paid";
     }
 }

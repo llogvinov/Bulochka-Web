@@ -264,7 +264,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
 
             SessionService service = new SessionService();
             Session session = service.Get(orderHeader.SessionId);
-            if (session.PaymentStatus.ToLower() == "paid")
+            if (session.PaymentStatus.ToLower() == SD.Paid)
             {
                 _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                 _unitOfWork.Save();
