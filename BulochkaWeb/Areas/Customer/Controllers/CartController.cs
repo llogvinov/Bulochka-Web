@@ -75,48 +75,20 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            if (claim == null)
-            {
-                throw new ArgumentNullException(nameof(claim));
-            }
-
-            shoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
-                includeProperties: "Product");
-
-            shoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
-            shoppingCartVM.OrderHeader.ApplicationUser =
-                _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
-
+            if (claim == null) throw new ArgumentNullException(nameof(claim));
+            
+            SetListCart(shoppingCartVM, claim);
+            SetUserInfo(shoppingCartVM, claim);
             SetOrderHeaderAddress(shoppingCartVM,
                 shoppingCartVM.OrderHeader.ApplicationUser.City,
                 shoppingCartVM.OrderHeader.ApplicationUser.StreetAddress,
                 shoppingCartVM.OrderHeader.ApplicationUser.PostalCode);
 
-            shoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
-            shoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
-            shoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
+            SetDefaultInformation(shoppingCartVM);
+            CalculateTotal(shoppingCartVM);
 
-            foreach (var cart in shoppingCartVM.ListCart)
-            {
-                shoppingCartVM.OrderHeader.OrderTotal += (cart.Product.Price * cart.Count);
-            }
-
-            _unitOfWork.OrderHeader.Add(shoppingCartVM.OrderHeader);
-            _unitOfWork.Save();
-
-            foreach (var cart in shoppingCartVM.ListCart)
-            {
-                OrderDetail orderDetail = new()
-                {
-                    ProductId = cart.ProductId,
-                    OrderId = shoppingCartVM.OrderHeader.Id,
-                    Price = cart.Product.Price,
-                    Count = cart.Count,
-                };
-
-                _unitOfWork.OrderDetail.Add(orderDetail);
-                _unitOfWork.Save();
-            }
+            AddOrderHeaderInfoToDb(shoppingCartVM);
+            AddOrderDetailInfoToDb(shoppingCartVM);
 
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
             _unitOfWork.Save();
@@ -160,45 +132,23 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            shoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
-                includeProperties: "Product");
+            if (claim == null) throw new ArgumentNullException(nameof(claim));
 
             var companyBranch = _unitOfWork.CompanyBranch.GetFirstOrDefault(
                 b => b.Id == shoppingCartVM.OrderHeader.PickUpPlaceId);
-            
-            SetOrderHeaderAddress(shoppingCartVM, 
-                companyBranch.City, 
-                companyBranch.StreetAddress, 
+
+            SetListCart(shoppingCartVM, claim);
+            SetUserInfo(shoppingCartVM, claim);
+            SetOrderHeaderAddress(shoppingCartVM,
+                companyBranch.City,
+                companyBranch.StreetAddress,
                 companyBranch.PostalCode);
 
-            shoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
-            shoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
-            shoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
-            shoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
-            shoppingCartVM.OrderHeader.ApplicationUser =
-                _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
+            SetDefaultInformation(shoppingCartVM);
+            CalculateTotal(shoppingCartVM);
 
-            foreach (var cart in shoppingCartVM.ListCart)
-            {
-                shoppingCartVM.OrderHeader.OrderTotal += (cart.Product.Price * cart.Count);
-            }
-
-            _unitOfWork.OrderHeader.Add(shoppingCartVM.OrderHeader);
-            _unitOfWork.Save();
-
-            foreach (var cart in shoppingCartVM.ListCart)
-            {
-                OrderDetail orderDetail = new()
-                {
-                    ProductId = cart.ProductId,
-                    OrderId = shoppingCartVM.OrderHeader.Id,
-                    Price = cart.Product.Price,
-                    Count = cart.Count,
-                };
-
-                _unitOfWork.OrderDetail.Add(orderDetail);
-                _unitOfWork.Save();
-            }
+            AddOrderHeaderInfoToDb(shoppingCartVM);
+            AddOrderDetailInfoToDb(shoppingCartVM);
 
             #region Stripe
 
@@ -221,7 +171,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
                 {
                     PriceData = new SessionLineItemPriceDataOptions
                     {
-                        UnitAmount = (long)(item.Product.Price * item.Count * 100),
+                        UnitAmount = (long)(item.Product.Price * 100),
                         Currency = "rub",
                         ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
@@ -236,8 +186,8 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             var service = new SessionService();
             Session session = service.Create(options);
 
-            _unitOfWork.OrderHeader.UpdateStripePaymentId(shoppingCartVM.OrderHeader.Id, 
-                session.Id, 
+            _unitOfWork.OrderHeader.UpdateStripePaymentId(shoppingCartVM.OrderHeader.Id,
+                session.Id,
                 session.PaymentIntentId);
             _unitOfWork.Save();
 
@@ -249,13 +199,6 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             //_unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
             //_unitOfWork.Save();
             //return RedirectToAction("Index", "Home");
-        }
-
-        private static void SetOrderHeaderAddress(ShoppingCartVM ShoppingCartVM, string city, string address, string postalCode)
-        {
-            ShoppingCartVM.OrderHeader.City = city;
-            ShoppingCartVM.OrderHeader.StreetAddress = address;
-            ShoppingCartVM.OrderHeader.PostalCode = postalCode;
         }
 
         public IActionResult OrderConfirmation(int id)
@@ -275,6 +218,70 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             _unitOfWork.Save();
             return View();
         }
+
+        #region SummaryPOST common methods
+
+        private static void SetOrderHeaderAddress(ShoppingCartVM ShoppingCartVM, string city, string address, string postalCode)
+        {
+            ShoppingCartVM.OrderHeader.City = city;
+            ShoppingCartVM.OrderHeader.StreetAddress = address;
+            ShoppingCartVM.OrderHeader.PostalCode = postalCode;
+        }
+
+        private static void SetDefaultInformation(ShoppingCartVM shoppingCartVM)
+        {
+            shoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
+            shoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
+            shoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
+        }
+
+        private void AddOrderDetailInfoToDb(ShoppingCartVM shoppingCartVM)
+        {
+            foreach (var cart in shoppingCartVM.ListCart)
+            {
+                OrderDetail orderDetail = new()
+                {
+                    ProductId = cart.ProductId,
+                    OrderId = shoppingCartVM.OrderHeader.Id,
+                    Price = cart.Product.Price,
+                    Count = cart.Count,
+                };
+
+                _unitOfWork.OrderDetail.Add(orderDetail);
+                _unitOfWork.Save();
+            }
+        }
+
+        private static void CalculateTotal(ShoppingCartVM shoppingCartVM)
+        {
+            foreach (var cart in shoppingCartVM.ListCart)
+            {
+                shoppingCartVM.OrderHeader.OrderTotal += (cart.Product.Price * cart.Count);
+            }
+        }
+
+        private void SetUserInfo(ShoppingCartVM shoppingCartVM, Claim? claim)
+        {
+            shoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
+            shoppingCartVM.OrderHeader.ApplicationUser =
+                _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
+        }
+
+        private void AddOrderHeaderInfoToDb(ShoppingCartVM shoppingCartVM)
+        {
+            _unitOfWork.OrderHeader.Add(shoppingCartVM.OrderHeader);
+            _unitOfWork.Save();
+        }
+
+        private void SetListCart(ShoppingCartVM shoppingCartVM, Claim? claim)
+        {
+            shoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
+                includeProperties: "Product");
+        }
+
+        #endregion
+
+        #region Cart methods
 
         public IActionResult Plus(int cartId)
         {
@@ -306,6 +313,9 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             _unitOfWork.ShoppingCart.Remove(cart);
             _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
-        }
+        } 
+
+        #endregion
+
     }
 }
