@@ -45,6 +45,7 @@
           "Microsoft.VisualStudio.Web.CodeGeneration": "6.0.11",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.11",
           "Microsoft.VisualStudio.Web.CodeGeneration.Utils": "6.0.11",
+          "Stripe.net": "41.17.0",
           "Swashbuckle.AspNetCore": "6.3.0",
           "Microsoft.AspNetCore.Antiforgery.Reference": "6.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "6.0.0.0",
@@ -2478,6 +2479,21 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
+      "Stripe.net/41.17.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "assemblyVersion": "41.17.0.0",
+            "fileVersion": "41.17.0.0"
+          }
+        },
+        "compile": {
+          "lib/net6.0/Stripe.net.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/6.3.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "3.0.0",
@@ -6086,6 +6102,13 @@
       "sha512": "sha512-VB5cn/7OzUfzdnC8tqAIMQciVLiq2epm2NrAm1E9OjNRyG4lVhfR61SMcLizejzQP8R8Uf/0l5qOIbUEi+RdEg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
+    },
+    "Stripe.net/41.17.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lykjrwgMg4vU7vs4piQWMwcZb+DKEKKeOn5PCKvKGmVDw+XiA+S0iJ5oK5CsQpqX/rh9Q3YIefkXE+cG9D/jZQ==",
+      "path": "stripe.net/41.17.0",
+      "hashPath": "stripe.net.41.17.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.3.0": {
       "type": "package",

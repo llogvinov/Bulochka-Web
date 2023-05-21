@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Extensions.Options
 @model Bulochka.Models.ViewModels.ShoppingCartVM
+@inject IOptions<Bulochka.Utility.StripeSettings> Stripe
 
 <form method="post">
 	<br />
@@ -78,11 +79,14 @@
 			</div>
 			<div class="card-footer">
 				<div class="row">
-					<div class="col-12 col-md-8 pt-2">
+					<div class="col-12 col-md-6 pt-2">
 						<p style="color:maroon; font-size:14px;">Примерное  время готовности 10 минут</p>
 					</div>
-					<div class="col-12 col-md-4">
-						<button type="submit" value="Place Order" class="btn btn-primary form-control">Оформить заказ</button>
+					<div class="col-12 col-md-3">
+						<button type="submit" value="Place Order" class="btn btn-primary form-control">Оплатить при получении</button>
+					</div>
+					<div class="col-12 col-md-3">
+						<button type="submit" value="Place Order" class="btn btn-primary form-control">Оплатить на сайте</button>
 					</div>
 				</div>
 			</div>

@@ -876,3 +876,4 @@ C:\Практика\Bulochka-Web\BulochkaWeb\bin\Debug\net6.0\refs\System.Xml.XP
 C:\Практика\Bulochka-Web\BulochkaWeb\bin\Debug\net6.0\refs\WindowsBase.dll
 C:\Практика\Bulochka-Web\BulochkaWeb\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 C:\Практика\Bulochka-Web\BulochkaWeb\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
+C:\Практика\Bulochka-Web\BulochkaWeb\bin\Debug\net6.0\Stripe.net.dll

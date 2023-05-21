@@ -5,6 +5,7 @@ using Bulochka.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Stripe.Checkout;
 using System.Security.Claims;
 
 namespace BulochkaWeb.Areas.Customer.Controllers
@@ -199,9 +200,51 @@ namespace BulochkaWeb.Areas.Customer.Controllers
                 _unitOfWork.Save();
             }
 
+            /*
+            #region Stripe
+
+            var domain = "";
+            var options = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string>
+                {
+                    "card",
+                },
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+                SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={shoppingCartVM.OrderHeader.Id}",
+                CancelUrl = domain + $"customer/cart/index",
+            };
+
+            foreach (var item in shoppingCartVM.ListCart)
+            {
+                var sessionLineItem = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (long)(item.Product.Price * item.Count * 100),
+                        Currency = "rub",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = item.Product.Title,
+                        },
+                    },
+                    Quantity = item.Count,
+                };
+                options.LineItems.Add(sessionLineItem);
+            }
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
+
+            #endregion
+            */
+
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
             _unitOfWork.Save();
-
             return RedirectToAction("Index", "Home");
         }
 
