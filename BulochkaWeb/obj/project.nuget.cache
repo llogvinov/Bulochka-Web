@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Tp09uK8imhiP9Z/wvSNu+kKYEMrNSNtxVQe4EaxwELpbf3Phi3nBfqQCVI/TznjL7ZEHwCuMFQkLAVtC68JTCg==",
+  "dgSpecHash": "HY+l3db2ROEdtf1gqhOmmvsteTTWf3ZayrVVaIdKwa2EElHiHM4y/DbgSOxdxuldIbydZiotwigvNTVXYjyB4g==",
   "success": true,
   "projectFilePath": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj",
   "expectedPackageFiles": [
@@ -146,6 +146,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Лев\\.nuget\\packages\\stripe.net\\41.17.0\\stripe.net.41.17.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\swashbuckle.aspnetcore\\6.3.0\\swashbuckle.aspnetcore.6.3.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.3.0\\swashbuckle.aspnetcore.swagger.6.3.0.nupkg.sha512",
     "C:\\Users\\Лев\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.3.0\\swashbuckle.aspnetcore.swaggergen.6.3.0.nupkg.sha512",
