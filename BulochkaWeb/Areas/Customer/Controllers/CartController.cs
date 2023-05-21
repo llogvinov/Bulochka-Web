@@ -200,7 +200,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
                 _unitOfWork.Save();
             }
 
-            /*
+
             #region Stripe
 
             var domain = "";
@@ -237,12 +237,17 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             var service = new SessionService();
             Session session = service.Create(options);
 
+            _unitOfWork.OrderHeader.UpdateStripePaymentId(shoppingCartVM.OrderHeader.Id, 
+                session.Id, 
+                session.PaymentIntentId);
+            _unitOfWork.Save();
+
             Response.Headers.Add("Location", session.Url);
             return new StatusCodeResult(303);
 
             #endregion
-            */
 
+            // will be removed? 
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
             _unitOfWork.Save();
             return RedirectToAction("Index", "Home");
@@ -253,6 +258,24 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             ShoppingCartVM.OrderHeader.City = city;
             ShoppingCartVM.OrderHeader.StreetAddress = address;
             ShoppingCartVM.OrderHeader.PostalCode = postalCode;
+        }
+
+        public IActionResult OrderConfirmation(int id)
+        {
+            OrderHeader orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == id);
+
+            SessionService service = new SessionService();
+            Session session = service.Get(orderHeader.SessionId);
+            if (session.PaymentStatus.ToLower() == "paid")
+            {
+                _unitOfWork.OrderHeader.UpdateStripePaymentId(id, SD.StatusApproved, SD.PaymentStatusApproved);
+                _unitOfWork.Save();
+            }
+
+            List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
+            _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
+            _unitOfWork.Save();
+            return View();
         }
 
         public IActionResult Plus(int cartId)
