@@ -12,7 +12,11 @@ namespace Bulochka.Models.ViewModels
     {
         public IEnumerable<ShoppingCart> ListCart { get; set; }
         public OrderHeader OrderHeader { get; set; }
+        public string PaymentOption { get; set; }
+
         [ValidateNever]
         public IEnumerable<SelectListItem> CompanyBranchList { get; set; }
+        [ValidateNever]
+        public IEnumerable<SelectListItem> PaymentOptionList { get; set; }
     }
 }

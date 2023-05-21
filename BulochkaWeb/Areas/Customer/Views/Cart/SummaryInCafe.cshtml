@@ -53,6 +53,15 @@
 									</select>
 								</div>
 							</div>
+							<div class="row my-1">
+								<div class="col-4">
+									<label>Способ оплаты</label>
+								</div>
+								<div class="col-8">
+									<select asp-for="PaymentOption" asp-items="@Model.PaymentOptionList" class="form-select">
+									</select>
+								</div>
+							</div>
 						</div>
 						<div class="col-12 col-lg-5 offset-lg-1">
 							<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -79,17 +88,12 @@
 			</div>
 			<div class="card-footer">
 				<div class="row">
-					<div class="col-12 col-md-6 pt-2">
+					<div class="col-12 col-md-8 pt-2">
 						<p style="color:maroon; font-size:14px;">Примерное  время готовности 10 минут</p>
 					</div>
-					<div class="col-12 col-md-3">
+					<div class="col-12 col-md-4">
 						<button type="submit" value="Place Order" class="btn btn-primary form-control">
-							Оплатить при получении
-						</button>
-					</div>
-					<div class="col-12 col-md-3">
-						<button type="submit" value="Place Order" class="btn btn-primary form-control">
-							Оплатить на сайте
+							Оформить заказ
 						</button>
 					</div>
 				</div>

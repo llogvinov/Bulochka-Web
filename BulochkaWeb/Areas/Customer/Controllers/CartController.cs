@@ -50,7 +50,8 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             {
                 ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                     includeProperties: "Product"),
-                OrderHeader = new()
+                OrderHeader = new(),
+                PaymentOptionList = new SelectList(GetPaymentOptions(), "Value", "Text", 1),
             };
             ShoppingCartVM.OrderHeader.ApplicationUser =
                 _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
@@ -90,10 +91,60 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             AddOrderHeaderInfoToDb(shoppingCartVM);
             AddOrderDetailInfoToDb(shoppingCartVM);
 
-            _unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
-            _unitOfWork.Save();
+            if (shoppingCartVM.PaymentOption == SD.PaymentOptionOffline)
+            {
+                _unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
+                _unitOfWork.Save();
+                return RedirectToAction("Index", "Home");
+            }
+            else if (shoppingCartVM.PaymentOption == SD.PaymentOptionOnline)
+            {
+                var domain = "https://localhost:44324/";
+                var options = new SessionCreateOptions
+                {
+                    PaymentMethodTypes = new List<string>
+                    {
+                        "card",
+                    },
+                    LineItems = new List<SessionLineItemOptions>(),
+                    Mode = "payment",
+                    SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={shoppingCartVM.OrderHeader.Id}",
+                    CancelUrl = domain + $"customer/cart/index",
+                };
 
-            return RedirectToAction("Index", "Home");
+                foreach (var item in shoppingCartVM.ListCart)
+                {
+                    var sessionLineItem = new SessionLineItemOptions
+                    {
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            UnitAmount = (long)(item.Product.Price * 100),
+                            Currency = "rub",
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = item.Product.Title,
+                            },
+                        },
+                        Quantity = item.Count,
+                    };
+                    options.LineItems.Add(sessionLineItem);
+                }
+
+                var service = new SessionService();
+                Session session = service.Create(options);
+
+                _unitOfWork.OrderHeader.UpdateStripePaymentId(shoppingCartVM.OrderHeader.Id,
+                    session.Id,
+                    session.PaymentIntentId);
+                _unitOfWork.Save();
+
+                Response.Headers.Add("Location", session.Url);
+                return new StatusCodeResult(303);
+            }
+            else
+            {
+                throw new InvalidDataException("invalid payment option");
+            }
         }
 
         public IActionResult SummaryInCafe()
@@ -111,7 +162,8 @@ namespace BulochkaWeb.Areas.Customer.Controllers
                     {
                         Text = b.City + ", " + b.StreetAddress,
                         Value = b.Id.ToString()
-                    })
+                    }),
+                PaymentOptionList = new SelectList(GetPaymentOptions(), "Value", "Text", 1),
             };
             ShoppingCartVM.OrderHeader.ApplicationUser =
                 _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
@@ -150,55 +202,60 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             AddOrderHeaderInfoToDb(shoppingCartVM);
             AddOrderDetailInfoToDb(shoppingCartVM);
 
-            #region Stripe
-
-            var domain = "https://localhost:44324/";
-            var options = new SessionCreateOptions
+            if (shoppingCartVM.PaymentOption == SD.PaymentOptionOffline)
             {
-                PaymentMethodTypes = new List<string>
-                {
-                    "card",
-                },
-                LineItems = new List<SessionLineItemOptions>(),
-                Mode = "payment",
-                SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={shoppingCartVM.OrderHeader.Id}",
-                CancelUrl = domain + $"customer/cart/index",
-            };
-
-            foreach (var item in shoppingCartVM.ListCart)
-            {
-                var sessionLineItem = new SessionLineItemOptions
-                {
-                    PriceData = new SessionLineItemPriceDataOptions
-                    {
-                        UnitAmount = (long)(item.Product.Price * 100),
-                        Currency = "rub",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
-                        {
-                            Name = item.Product.Title,
-                        },
-                    },
-                    Quantity = item.Count,
-                };
-                options.LineItems.Add(sessionLineItem);
+                _unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
+                _unitOfWork.Save();
+                return RedirectToAction("Index", "Home");
             }
+            else if (shoppingCartVM.PaymentOption == SD.PaymentOptionOnline)
+            {
+                var domain = "https://localhost:44324/";
+                var options = new SessionCreateOptions
+                {
+                    PaymentMethodTypes = new List<string>
+                    {
+                        "card",
+                    },
+                    LineItems = new List<SessionLineItemOptions>(),
+                    Mode = "payment",
+                    SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={shoppingCartVM.OrderHeader.Id}",
+                    CancelUrl = domain + $"customer/cart/index",
+                };
 
-            var service = new SessionService();
-            Session session = service.Create(options);
+                foreach (var item in shoppingCartVM.ListCart)
+                {
+                    var sessionLineItem = new SessionLineItemOptions
+                    {
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            UnitAmount = (long)(item.Product.Price * 100),
+                            Currency = "rub",
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = item.Product.Title,
+                            },
+                        },
+                        Quantity = item.Count,
+                    };
+                    options.LineItems.Add(sessionLineItem);
+                }
 
-            _unitOfWork.OrderHeader.UpdateStripePaymentId(shoppingCartVM.OrderHeader.Id,
-                session.Id,
-                session.PaymentIntentId);
-            _unitOfWork.Save();
+                var service = new SessionService();
+                Session session = service.Create(options);
 
-            Response.Headers.Add("Location", session.Url);
-            return new StatusCodeResult(303);
+                _unitOfWork.OrderHeader.UpdateStripePaymentId(shoppingCartVM.OrderHeader.Id,
+                    session.Id,
+                    session.PaymentIntentId);
+                _unitOfWork.Save();
 
-            #endregion
-
-            //_unitOfWork.ShoppingCart.RemoveRange(shoppingCartVM.ListCart);
-            //_unitOfWork.Save();
-            //return RedirectToAction("Index", "Home");
+                Response.Headers.Add("Location", session.Url);
+                return new StatusCodeResult(303); 
+            }
+            else
+            {
+                throw new InvalidDataException("invalid payment option");
+            }
         }
 
         public IActionResult OrderConfirmation(int id)
@@ -217,6 +274,23 @@ namespace BulochkaWeb.Areas.Customer.Controllers
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
             _unitOfWork.Save();
             return View();
+        }
+
+        private List<SelectListItem> GetPaymentOptions()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = "Оплатить при получении",
+                    Value = SD.PaymentOptionOffline,
+                },
+                new SelectListItem
+                {
+                    Text = "Оплатить на сайте",
+                    Value = SD.PaymentOptionOnline,
+                },
+            };
         }
 
         #region SummaryPOST common methods
