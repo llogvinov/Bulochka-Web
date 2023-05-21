@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6EVA4wl+MRtYaJLbwVdOprHkC/wdMXVsiQV2fbwFVsI=",
+  "Hash": "u7kUvHhzf2y+fO/TEmfe3G8aD++E7BnVjyhlWxurBr4=",
   "Source": "BulochkaWeb",
   "BasePath": "_content/BulochkaWeb",
   "Mode": "Default",
@@ -1190,6 +1190,23 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\7f20a318-faad-4aff-b201-4a4c278f2bd4.jpg"
     },
     {
+      "Identity": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\images\\products\\9a14a082-996f-4596-8a5f-23597cda5158.jpg",
+      "SourceId": "BulochkaWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\",
+      "BasePath": "_content/BulochkaWeb",
+      "RelativePath": "images/products/9a14a082-996f-4596-8a5f-23597cda5158.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\9a14a082-996f-4596-8a5f-23597cda5158.jpg"
+    },
+    {
       "Identity": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\images\\products\\a927153e-4cef-4257-8c11-8e978b9726ac.jpg",
       "SourceId": "BulochkaWeb",
       "SourceType": "Discovered",
@@ -1239,23 +1256,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\ec0d5119-c4d9-4dda-a27a-a3ecb1013b9f.jpg"
-    },
-    {
-      "Identity": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\images\\products\\f480e1c1-3c47-4cd8-aeff-a34963e86921.jpg",
-      "SourceId": "BulochkaWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\",
-      "BasePath": "_content/BulochkaWeb",
-      "RelativePath": "images/products/f480e1c1-3c47-4cd8-aeff-a34963e86921.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\products\\f480e1c1-3c47-4cd8-aeff-a34963e86921.jpg"
     },
     {
       "Identity": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\images\\products\\fbd1f75e-2dd5-42ef-ab75-76116341531e.jpg",
