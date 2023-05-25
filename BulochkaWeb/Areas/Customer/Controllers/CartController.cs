@@ -213,10 +213,7 @@ namespace BulochkaWeb.Areas.Customer.Controllers
                 var domain = "https://localhost:44324/";
                 var options = new SessionCreateOptions
                 {
-                    PaymentMethodTypes = new List<string>
-                    {
-                        "card",
-                    },
+                    PaymentMethodTypes = new List<string> { "card" },
                     LineItems = new List<SessionLineItemOptions>(),
                     Mode = "payment",
                     SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={shoppingCartVM.OrderHeader.Id}",
