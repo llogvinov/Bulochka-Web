@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Extensions.Options
 @model Bulochka.Models.ViewModels.ShoppingCartVM
+@inject IOptions<Bulochka.Utility.StripeSettings> Stripe
 
 <form method="post">
 	<br />
@@ -52,6 +53,15 @@
 									</select>
 								</div>
 							</div>
+							<div class="row my-1">
+								<div class="col-4">
+									<label>Способ оплаты</label>
+								</div>
+								<div class="col-8">
+									<select asp-for="PaymentOption" asp-items="@Model.PaymentOptionList" class="form-select">
+									</select>
+								</div>
+							</div>
 						</div>
 						<div class="col-12 col-lg-5 offset-lg-1">
 							<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -82,7 +92,9 @@
 						<p style="color:maroon; font-size:14px;">Примерное  время готовности 10 минут</p>
 					</div>
 					<div class="col-12 col-md-4">
-						<button type="submit" value="Place Order" class="btn btn-primary form-control">Оформить заказ</button>
+						<button type="submit" value="Place Order" class="btn btn-primary form-control">
+							Оформить заказ
+						</button>
 					</div>
 				</div>
 			</div>

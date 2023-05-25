@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "u7kUvHhzf2y+fO/TEmfe3G8aD++E7BnVjyhlWxurBr4=",
+  "Hash": "T3PYqzNXC7VuNYmmkCVESOlSWf+hKJLSX2ZNEi48x6k=",
   "Source": "BulochkaWeb",
   "BasePath": "_content/BulochkaWeb",
   "Mode": "Default",
@@ -1120,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\images\\bulochki.jpg",
+      "SourceId": "BulochkaWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\",
+      "BasePath": "_content/BulochkaWeb",
+      "RelativePath": "images/bulochki.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\bulochki.jpg"
     },
     {
       "Identity": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\wwwroot\\images\\products\\116a8853-e412-4b7f-a444-a22e9741ed35.jpg",
