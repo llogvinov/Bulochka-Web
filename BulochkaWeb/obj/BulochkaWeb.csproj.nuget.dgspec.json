@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj": {}
+    "C:\\backend\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj": {}
   },
   "projects": {
-    "C:\\Практика\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj": {
+    "C:\\backend\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Практика\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj",
+        "projectUniqueName": "C:\\backend\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj",
         "projectName": "Bulochka.DataAccess",
-        "projectPath": "C:\\Практика\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Лев\\.nuget\\packages\\",
-        "outputPath": "C:\\Практика\\Bulochka-Web\\Bulochka.DataAccess\\obj\\",
+        "projectPath": "C:\\backend\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\llogv\\.nuget\\packages\\",
+        "outputPath": "C:\\backend\\Bulochka-Web\\Bulochka.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Лев\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\llogv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,14 +25,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Практика\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj": {
-                "projectPath": "C:\\Практика\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj"
+              "C:\\backend\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj": {
+                "projectPath": "C:\\backend\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj"
               }
             }
           }
@@ -41,6 +42,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -70,33 +76,48 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Практика\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj": {
+    "C:\\backend\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Практика\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj",
+        "projectUniqueName": "C:\\backend\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj",
         "projectName": "Bulochka.Models",
-        "projectPath": "C:\\Практика\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj",
-        "packagesPath": "C:\\Users\\Лев\\.nuget\\packages\\",
-        "outputPath": "C:\\Практика\\Bulochka-Web\\Bulochka.Models\\obj\\",
+        "projectPath": "C:\\backend\\Bulochka-Web\\Bulochka.Models\\Bulochka.Models.csproj",
+        "packagesPath": "C:\\Users\\llogv\\.nuget\\packages\\",
+        "outputPath": "C:\\backend\\Bulochka-Web\\Bulochka.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Лев\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\llogv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -104,6 +125,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -116,6 +138,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -137,33 +164,48 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Практика\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj": {
+    "C:\\backend\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Практика\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj",
+        "projectUniqueName": "C:\\backend\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj",
         "projectName": "Bulochka.Utility",
-        "projectPath": "C:\\Практика\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj",
-        "packagesPath": "C:\\Users\\Лев\\.nuget\\packages\\",
-        "outputPath": "C:\\Практика\\Bulochka-Web\\Bulochka.Utility\\obj\\",
+        "projectPath": "C:\\backend\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj",
+        "packagesPath": "C:\\Users\\llogv\\.nuget\\packages\\",
+        "outputPath": "C:\\backend\\Bulochka-Web\\Bulochka.Utility\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Лев\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\llogv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -171,6 +213,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -183,6 +226,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -200,33 +248,48 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj": {
+    "C:\\backend\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj",
+        "projectUniqueName": "C:\\backend\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj",
         "projectName": "BulochkaWeb",
-        "projectPath": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj",
-        "packagesPath": "C:\\Users\\Лев\\.nuget\\packages\\",
-        "outputPath": "C:\\Практика\\Bulochka-Web\\BulochkaWeb\\obj\\",
+        "projectPath": "C:\\backend\\Bulochka-Web\\BulochkaWeb\\BulochkaWeb.csproj",
+        "packagesPath": "C:\\Users\\llogv\\.nuget\\packages\\",
+        "outputPath": "C:\\backend\\Bulochka-Web\\BulochkaWeb\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Лев\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\llogv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -234,17 +297,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Практика\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj": {
-                "projectPath": "C:\\Практика\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj"
+              "C:\\backend\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj": {
+                "projectPath": "C:\\backend\\Bulochka-Web\\Bulochka.DataAccess\\Bulochka.DataAccess.csproj"
               },
-              "C:\\Практика\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj": {
-                "projectPath": "C:\\Практика\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj"
+              "C:\\backend\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj": {
+                "projectPath": "C:\\backend\\Bulochka-Web\\Bulochka.Utility\\Bulochka.Utility.csproj"
               }
             }
           }
@@ -253,6 +317,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -312,10 +381,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -324,7 +412,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
